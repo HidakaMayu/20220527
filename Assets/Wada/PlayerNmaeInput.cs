@@ -12,6 +12,7 @@ public class PlayerNmaeInput : MonoBehaviour
     {
         inputField = inputField.GetComponent<InputField>();
         text = text.GetComponent<Text>();
+        //inputField.onEndEdit.AddListener(s => Debug.Log(s));
     }
 
     // Update is called once per frame
