@@ -8,10 +8,10 @@ public enum PhaseType
     Phase2,
     Phase3,
     Phase4,
-    Phase5,
-    Phase6,
-    Phase7,
-    Phase8,
+    //Phase5,
+    //Phase6,
+    //Phase7,
+    //Phase8,
 }
 
 public class ArrowsPrefab : MonoBehaviour
@@ -115,18 +115,18 @@ public class ArrowsPrefab : MonoBehaviour
             case PhaseType.Phase4:
                 overTime = 0.5f;
                 break;
-            case PhaseType.Phase5:
-                overTime = 0.3f;
-                break;
-            case PhaseType.Phase6:
-                overTime = 0.15f;
-                break;
-            case PhaseType.Phase7:
-                overTime = 0.05f;
-                break;
-            case PhaseType.Phase8:
-                overTime = 0.001f;
-                break;
+            //case PhaseType.Phase5:
+            //    overTime = 0.3f;
+            //    break;
+            //case PhaseType.Phase6:
+            //    overTime = 0.15f;
+            //    break;
+            //case PhaseType.Phase7:
+            //    overTime = 0.05f;
+            //    break;
+            //case PhaseType.Phase8:
+            //    overTime = 0.001f;
+            //    break;
             default:
                 break;
         }
