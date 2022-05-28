@@ -5,8 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - Floor
+<<<<<<< HEAD
   - Testwall
   - arrow
+=======
+  - Slime
+>>>>>>> 71efc9f58b28c405dd63577ec20c45369823815d
   layers:
   - Default
   - TransparentFX
