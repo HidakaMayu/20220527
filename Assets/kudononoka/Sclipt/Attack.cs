@@ -5,9 +5,9 @@ using UnityEngine;
 public class Attack : MonoBehaviour
 {
     // Start is called before the first frame update
+
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -19,10 +19,9 @@ public class Attack : MonoBehaviour
    
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log(1);
         if (other.gameObject.CompareTag("Slime"))
         {
-            Debug.Log("a");
+            GameManager.score++;
             Destroy(other.gameObject);
         }
 
