@@ -9,7 +9,12 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     Text _text = default;
 
-    float _timer = default;
+    [SerializeField]
+    Text _score = default;
+
+    static public float _timer = default;
+
+    static public int score = default;
 
     bool _isStop = default;
     bool _phase1 = false;
@@ -34,7 +39,12 @@ public class GameManager : MonoBehaviour
         //_text.text = $"TIME : {_timer.ToString("f2")}";
         _text.text = _timer.ToString("f1");
 
-        if(_timer >= 30 && !_phase1 )
+        _score.text = (score * (int)_timer).ToString();
+
+
+
+
+        if (_timer >= 30 && !_phase1 )
         {
             OnChangeGenerateTime?.Invoke(PhaseType.Phase2);
             _phase1 = true;

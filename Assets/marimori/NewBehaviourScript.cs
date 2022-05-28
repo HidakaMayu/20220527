@@ -8,6 +8,8 @@ public class NewBehaviourScript : MonoBehaviour
     Vector3 PlayeyPosition;
     Rigidbody rb;
     Vector3 EnemyPosotion;
+
+    PlayerController playerController;
  
     // Start is called before the first frame update
     void Start()
@@ -36,5 +38,17 @@ public class NewBehaviourScript : MonoBehaviour
         }
 
         transform.position = EnemyPosotion;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            playerController = collision.GetComponent<PlayerController>();
+            {
+                playerController.Damage(1);
+                Destroy(this.gameObject);
+            }
+        }
     }
 }
