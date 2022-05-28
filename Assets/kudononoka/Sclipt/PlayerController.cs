@@ -27,6 +27,9 @@ public class PlayerController : MonoBehaviour
         _curentHp = m_hp;
         HP.text = $"HP:{_curentHp}";@//Å‰‚ÌHP‚ğ•\¦
         anim = GetComponent<Animator>();
+        ondes.allScore = 0;
+        GameManager.score = 0;
+        GameManager._timer = 0;
     }
 
     // Update is called once per frame
