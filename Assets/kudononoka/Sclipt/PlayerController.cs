@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float Speed; //移動速度
     private float jumpForce = 1100f; //ジャンプ力
     private int jumpCount = 0;　
-    [SerializeField] Text HP;
+    [SerializeField] Text _HP;
     [SerializeField] int m_hp = 5;
 
     int _curentHp;
@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody2D>();
         _curentHp = m_hp;
-        HP.text = $"HP:{_curentHp}";　//最初のHPを表示
+        _HP.text = $"HP:{_curentHp}";　//最初のHPを表示
 
     }
 
@@ -29,7 +29,6 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         //横移動
-        Debug.Log(_rb.velocity.magnitude);
         float x = Input.GetAxisRaw("Horizontal"); 
         if( _rb.velocity.magnitude < 10)
         {
@@ -49,14 +48,14 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("Floor"))　　//床に触れているときジャンプができる
         {
             jumpCount = 0;
-        }
-        
+        }        
      }
+
 
     public void Damage(int damage) 　　//雨に当たった時のダメージ
     {
         _curentHp -= damage;
-        HP.text = $"HP:{_curentHp}";   //減ったHPを表示
+        _HP.text = $"HP:{_curentHp}";   //減ったHPを表示
         if (_curentHp <= 0) 　　//HPが0になった時メソッドを呼び出す
         {
             ChangeSecene();  
