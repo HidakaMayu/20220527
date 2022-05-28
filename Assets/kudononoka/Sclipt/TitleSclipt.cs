@@ -22,7 +22,7 @@ public class TitleSclipt : MonoBehaviour
         if (Input.GetKey(KeyCode.Space))
         {
             Debug.Log(1);
-            SceneManager.LoadScene("KudoScene");
+            SceneManager.LoadScene("MainGameScene");
             
         }
     }

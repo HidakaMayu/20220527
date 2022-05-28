@@ -13,13 +13,12 @@ public class Nomalrain : MonoBehaviour
         
         if (other.gameObject.tag == "Player")
         {
-            playerController = GetComponent<PlayerController>();
+            playerController = other.gameObject.GetComponent<PlayerController>();
             playerController.Damage(1);
             Destroy(this.gameObject);
         }
         else if(other.gameObject.tag == "Floor")
         {
-            Debug.Log($"‚ ‚½‚Á‚½");
 
             Vector3 position = new Vector3(transform.position.x, transform.position.y, 0);
             Instantiate(_enemy, position, Quaternion.identity);

@@ -13,15 +13,14 @@ public class ScoreSort : MonoBehaviour
     [SerializeField] Text text;
 
     //OrderedDictionary dictionary = new OrderedDictionary();
-    Dictionary<string, int> dictionary = new Dictionary<string, int>();
+    static public Dictionary<string, int> dictionary = new Dictionary<string, int>();
 
     void Start()
     {
-        dictionary.Add("Apple", 120);
-        dictionary.Add("Grape", 220);
-        dictionary.Add("Spe", 20);
-        dictionary.Add("Orange", 90);
-        dictionary.Add("Orage", 10);
+
+
+
+        //dictionary.Add(" ", 0);
         //ã‹L”’l‚Æ•¶Žš—ñ‚Íˆê—á
         foreach (var s in dictionary.OrderByDescending(s => s.Value))
         {
@@ -34,5 +33,14 @@ public class ScoreSort : MonoBehaviour
         //}
     }
     
+
+    public void InputScore(string x, int y)
+    {
+        dictionary.Add(x, y);
+        foreach (var s in dictionary.OrderByDescending(s => s.Value))
+        {
+            text.text += $"{s.Key}  {s.Value}point\n";
+        }
+    }
 
 }
