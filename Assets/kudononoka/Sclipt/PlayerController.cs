@@ -46,13 +46,14 @@ public class PlayerController : MonoBehaviour
     
      void OnCollisionEnter2D(Collision2D other)　
      {
-        if(other.gameObject.CompareTag("Floor"))　　//床に触れているときジャンプができる
+        if (other.gameObject.CompareTag("Floor"))　　//床に触れているときジャンプができる
         {
             jumpCount = 0;
         }
+        
      }
 
-    public void Damage(int damage) 　　//雨に当たった時ダメージを受ける
+    public void Damage(int damage) 　　//雨に当たった時のダメージ
     {
         _curentHp -= damage;
         HP.text = $"HP:{_curentHp}";   //減ったHPを表示
@@ -64,6 +65,8 @@ public class PlayerController : MonoBehaviour
 
      void ChangeSecene()  //シーンの遷移
      {
-         SceneManager.LoadScene(/*シーン名*/);
+         SceneManager.LoadScene("Hidaka");
      }
+
+
 }
