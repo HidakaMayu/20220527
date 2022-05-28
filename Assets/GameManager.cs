@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     bool _phase1 = false;
     bool _phase2 = false;
     bool _phase3 = false;
+    int score = 0;
 
     public static Action<float> OnChangeGenerateTime;
     void Start()
@@ -24,6 +25,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+
         if (_isStop) { return; }
 
         _timer += Time.deltaTime;
@@ -55,6 +57,11 @@ public class GameManager : MonoBehaviour
     public void ControlTime()
     {
         _isStop ^= true;
+    }
+
+    void PointUp(int x)
+    {
+        score += x;
     }
 
 }
