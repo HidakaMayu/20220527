@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     private float jumpForce = 1100f; //ƒWƒƒƒ“ƒv—Í
     private int jumpCount = 0;@
     [SerializeField] Text HP;
-    [SerializeField] int m_hp = 5;
+    public int m_hp = 5;
 
     int _curentHp;
  
@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         //‰¡ˆÚ“®
-        Debug.Log(_rb.velocity.magnitude);
+        //Debug.Log(_rb.velocity.magnitude);
         float x = Input.GetAxisRaw("Horizontal"); 
         if( _rb.velocity.magnitude < 10)
         {

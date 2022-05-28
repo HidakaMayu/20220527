@@ -90,7 +90,7 @@ public class ArrowsPrefab : MonoBehaviour
 
 
         //}
-        Debug.Log(overTime);
+        //Debug.Log(overTime);
     }
 
     //void reset()

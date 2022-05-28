@@ -18,4 +18,18 @@ public class ArrowDelete : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
+
+    //private void ontriggerenter2d(collider2d other)
+    //{
+    //    if (other.gameobject.tag == "testwall")
+    //    {
+
+    //        destroy(this.gameobject);
+    //    }
+    //    else
+    //    {
+
+    //        //destroy(this.gameobject);
+    //    }
+    //}
 }
