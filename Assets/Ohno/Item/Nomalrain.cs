@@ -17,7 +17,7 @@ public class Nomalrain : MonoBehaviour
             playerController.Damage(1);
             Destroy(this.gameObject);
         }
-        else
+        else if(other.gameObject.tag == "Floor")
         {
             Debug.Log($"‚ ‚½‚Á‚½");
 
