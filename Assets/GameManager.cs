@@ -52,26 +52,26 @@ public class GameManager : MonoBehaviour
             _phase3 = true;
 
         }
-        //else if (_timer >= 70 && !_phase4)
-        //{
-        //    OnChangeGenerateTime?.Invoke(PhaseType.Phase5);
-        //    _phase4 = true;
-        //}
-        //else if (_timer >= 80 && !_phase5)
-        //{
-        //    OnChangeGenerateTime?.Invoke(PhaseType.Phase6);
-        //    _phase5 = true;
-        //}
-        //else if (_timer >= 90 && !_phase6)
-        //{
-        //    OnChangeGenerateTime?.Invoke(PhaseType.Phase7);
-        //    _phase6 = true;
-        //}
-        //else if (_timer >= 100 && !_phase7)
-        //{
-        //    OnChangeGenerateTime?.Invoke(PhaseType.Phase8);
-        //    _phase7 = true;
-        //}
+        else if (_timer >= 70 && !_phase4)
+        {
+            OnChangeGenerateTime?.Invoke(PhaseType.Phase5);
+            _phase4 = true;
+        }
+        else if (_timer >= 80 && !_phase5)
+        {
+            OnChangeGenerateTime?.Invoke(PhaseType.Phase6);
+            _phase5 = true;
+        }
+        else if (_timer >= 90 && !_phase6)
+        {
+            OnChangeGenerateTime?.Invoke(PhaseType.Phase7);
+            _phase6 = true;
+        }
+        else if (_timer >= 100 && !_phase7)
+        {
+            OnChangeGenerateTime?.Invoke(PhaseType.Phase8);
+            _phase7 = true;
+        }
 
 
 
