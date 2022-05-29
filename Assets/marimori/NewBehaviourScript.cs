@@ -6,7 +6,6 @@ public class NewBehaviourScript : MonoBehaviour
 {
     GameObject PlayerObject;
     Vector3 PlayeyPosition;
-    Rigidbody rb;
     Vector3 EnemyPosotion;
 
     PlayerController playerController;
@@ -14,7 +13,6 @@ public class NewBehaviourScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
         PlayerObject = GameObject.FindWithTag("Player");
         PlayeyPosition = PlayerObject.transform.position;
         EnemyPosotion = transform.position;
@@ -23,18 +21,16 @@ public class NewBehaviourScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //x = Input.GetAxis("Horizontal");
-        //rd.Addforce =
         PlayeyPosition = PlayerObject.transform.position;
         EnemyPosotion = transform.position;
         
         if(PlayeyPosition.x > EnemyPosotion.x)
         {
-            EnemyPosotion.x = EnemyPosotion.x + 0.01f;
+            EnemyPosotion.x = EnemyPosotion.x + 0.008f;
         }
         else if(PlayeyPosition.x < EnemyPosotion.x)
         {
-            EnemyPosotion.x = EnemyPosotion.x - 0.01f;
+            EnemyPosotion.x = EnemyPosotion.x - 0.008f;
         }
 
         transform.position = EnemyPosotion;

@@ -7,6 +7,7 @@ public class Nomalrain : MonoBehaviour
     [SerializeField] GameObject _enemy;
     PlayerController playerController;
 
+    bool on = true;
 
     private void OnCollisionEnter2D(Collision2D other)
     {
@@ -21,7 +22,11 @@ public class Nomalrain : MonoBehaviour
         {
 
             Vector3 position = new Vector3(transform.position.x, transform.position.y, 0);
-            Instantiate(_enemy, position, Quaternion.identity);
+            if (on)
+            {
+                Instantiate(_enemy, position, Quaternion.identity);
+                on = false;
+            }
             Destroy(this.gameObject);
         }
 
