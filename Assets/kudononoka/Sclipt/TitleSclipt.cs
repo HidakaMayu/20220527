@@ -5,23 +5,29 @@ using UnityEngine.SceneManagement;
 
 public class TitleSclipt : MonoBehaviour
 {
-    // Start is called before the first frame update
+
+    GameObject player;
+    [SerializeField] GameObject blood;
     void Start()
     {
-        
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
     void Update()
     {
         ChangeSecene();
+
+        if(!player)
+        {
+            blood.SetActive(true);
+        }
     }
 
     void ChangeSecene()
     {
         if (Input.GetKey(KeyCode.Space))
         {
-            Debug.Log(1);
             SceneManager.LoadScene("MainGameScene");
             
         }

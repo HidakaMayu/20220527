@@ -15,6 +15,6 @@ public class Score : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        text.text = ondes.allScore.ToString();
+        text.text = $"{ondes.allScore.ToString()}";
     }
 }

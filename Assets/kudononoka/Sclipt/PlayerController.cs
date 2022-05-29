@@ -8,8 +8,8 @@ public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D _rb;
     [SerializeField] float Speed; //移動速度
-    private float jumpForce = 2500f; //ジャンプ力
-    private int jumpCount = 0;
+    [SerializeField] float jumpForce = 30f; //ジャンプ力
+    bool jumpCount = false;
     [SerializeField] Text HP;
     [SerializeField] int m_hp = 5;
 
@@ -17,13 +17,16 @@ public class PlayerController : MonoBehaviour
 
     Animator anim;
 
+    [SerializeField] AudioClip a;
+    AudioSource audioSource;
 
     float y = -5;
-
+    float x;
     // Start is called before the first frame update
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
+        audioSource = GetComponent<AudioSource>();
         _curentHp = m_hp;
         HP.text = $"HP:{_curentHp}";　//最初のHPを表示
         anim = GetComponent<Animator>();
@@ -33,23 +36,24 @@ public class PlayerController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        //横移動
-        float x = Input.GetAxisRaw("Horizontal");
-        if (_rb.velocity.magnitude < 3)
+        x = Input.GetAxisRaw("Horizontal");
+        if (jumpCount)
         {
-            _rb.AddForce(Vector2.right * x * Speed);
+            //横移動
+            if (_rb.velocity.magnitude < 4)
+            {
+                _rb.AddForce(Vector2.right * x * Speed);
+            }
+        }
+        else
+        {
+            _rb.velocity = new Vector2(x * 3, _rb.velocity.y);
         }
 
-        //ジャンプ移動　１回ジャンプしたらジャンプできない
-        if (Input.GetKeyDown(KeyCode.Space) && this.jumpCount < 1)
-        {
-            _rb.AddForce(Vector2.up * jumpForce);
-            jumpCount++;
-        }
 
-        if(x != 0)
+        if (x != 0)
         {
             anim.SetBool("Move", true);
         }
@@ -58,39 +62,66 @@ public class PlayerController : MonoBehaviour
             anim.SetBool("Move", false);
         }
 
-        if(x < 0)
+        if (x < 0)
         {
-            this.transform.eulerAngles = new Vector3(0,180,0);
+            this.transform.eulerAngles = new Vector3(0, 180, 0);
         }
-        else if(x > 0)
+        else if (x > 0)
         {
             this.transform.eulerAngles = new Vector3(0, 0, 0);
         }
-        if(jumpCount >= 1)
+        if (!jumpCount)
         {
             anim.SetBool("JumpUp", true);
-            if(y > transform.position.y)
+            if (y > transform.position.y)
             {
                 anim.SetBool("JumpDown", true);
             }
             y = transform.position.y;
         }
-        else
-        {
-            anim.SetBool("JumpUp", false);
-            anim.SetBool("JumpDown", false);
-        }
-    }
 
-    void OnCollisionEnter2D(Collision2D other)
+    }
+    private void Update()
     {
-        if (other.gameObject.CompareTag("Floor"))　　//床に触れているときジャンプができる
+        if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            jumpCount = 0;
+            if (jumpCount)
+            {
+                jumpCount = false;
+                _rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            }
         }
-
     }
 
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    if (collision.gameObject.CompareTag("Floor"))　　//床に触れているときジャンプができる
+    //    {
+    //        jumpCount = true;
+    //    }
+    //    anim.SetBool("JumpUp", false);
+    //    anim.SetBool("JumpDown", false);
+    //}
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (!jumpCount)
+        {
+            audioSource.PlayOneShot(a);
+        }
+        if (collision.gameObject.CompareTag("Floor"))　　//床に触れているときジャンプができる
+        {
+            jumpCount = true;
+        }
+        else if(collision.gameObject.CompareTag("DethObj"))
+        {
+            Destroy(this.gameObject);
+        }
+
+        anim.SetBool("JumpUp", false);
+        anim.SetBool("JumpDown", false);
+
+
+    }
     public void Damage(int damage) 　　//雨に当たった時のダメージ
     {
         _curentHp -= damage;

@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public enum PhaseType
 {
     Phase1,
@@ -24,6 +23,17 @@ public class ArrowsPrefab : MonoBehaviour
     public float height;
     //public float time = 0f;
 
+    static AudioClip a;
+    static AudioSource audioSource;
+    [SerializeField] AudioClip sound;
+
+    [SerializeField] GameObject _thunderObj;
+
+    private void Awake()
+    {
+        a = sound;
+    }
+
     private void OnEnable()
     {
         GameManager.OnChangeGenerateTime += ChangeGenerateTime;
@@ -37,7 +47,8 @@ public class ArrowsPrefab : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        audioSource = GetComponent<AudioSource>();
+        StartCoroutine("ThunderAttack");
     }
 
     // Update is called once per frame
@@ -59,6 +70,8 @@ public class ArrowsPrefab : MonoBehaviour
             GameObject arrow = Instantiate(ArrowPrefab, position, Quaternion.identity);
             time = 0;
         }
+
+        Invoke("ThunderAttack", 10);
 
         //if(longtime >= 50)
         //{
@@ -130,5 +143,24 @@ public class ArrowsPrefab : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    public static void Sound()
+    {
+        audioSource.PlayOneShot(a);
+    }
+
+    void MakeThunder()
+    {
+        Instantiate(_thunderObj);
+    }
+
+    IEnumerator ThunderAttack()
+    {
+
+        yield return new WaitForSeconds(10);
+        MakeThunder();
+        
+        StartCoroutine("ThunderAttack");
     }
 }
