@@ -26,7 +26,7 @@ public class TitleSclipt : MonoBehaviour
 
     void ChangeSecene()
     {
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             SceneManager.LoadScene("MainGameScene");
             
